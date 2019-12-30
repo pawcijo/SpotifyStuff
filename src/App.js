@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 
 
-let defaultTextColor = '#000';
+let defaultTextColor = '#fff';
 let defaultStyle = {
   color: defaultTextColor
 }
