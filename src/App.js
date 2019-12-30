@@ -109,7 +109,7 @@ class App extends Component {
   constructor()
   {
     super();
-    this.state = {serverData:{}}
+    this.state = {serverData: {}}
   }
 
   componentDidMount(){
@@ -126,8 +126,8 @@ class App extends Component {
             <h1 style={{...defaultStyle, 'font-size': '54px'}}> 
             { this.state.serverData.user.name}'s Playlist
           </h1>
-          <PlaylistCounter playlist={this.state.serverData.user.playlists} />
-          <HoursCounter playlist={this.state.serverData.user.playlists} />
+          <PlaylistCounter playlists={this.state.serverData.user.playlists} />
+          <HoursCounter playlists={this.state.serverData.user.playlists} />
 
           <Filter/>
           <Playlist/>
