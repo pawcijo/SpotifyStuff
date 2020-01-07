@@ -187,7 +187,7 @@ class App extends Component {
               ? 'http://localhost:8888/login' 
               : 'https://better-playlist-backned.herokuapp.com/login' }
           }
-          style={{padding: '20px', 'font-size': '50px', 'margin-top': '20px'}}>Sign in with Spotify</button>
+          style={{padding: '20px', 'font-size': '50px', 'margin-top': '20px'}}>Ricardo</button>
         }
       </div>
     );
