@@ -92,6 +92,26 @@ class Playlist extends Component {
   }
 }
 
+class Timer extends Component{
+  
+  componentDidMount() {
+    setInterval(() => this.setState({ time: Date.now()}), 1000)
+}
+  
+  render(){
+    let currentDate = new Date();
+    let timeToDieInSeconds = (21*60*60+37*60)-(currentDate.getHours()*60*60+currentDate.getMinutes()*60+currentDate.getSeconds());
+    let timetoDieInHours = Math.floor(timeToDieInSeconds / 3600);
+    let totalSecondsLeft = timeToDieInSeconds % 3600;
+    let minutes = Math.floor(totalSecondsLeft /60);
+    let seconds = totalSecondsLeft % 60;
+    return ( <div style={defaultStyle}> 
+      <h2>Time : {currentDate.getHours()}:{currentDate.getMinutes()}:{currentDate.getSeconds()}</h2>
+      <h2>Time to 21:37 : {timetoDieInHours}:{minutes}:{seconds}</h2>
+        </div>);
+  }
+}
+
 class App extends Component {
   constructor() {
     super();
@@ -176,6 +196,7 @@ class App extends Component {
           </h1>
           <PlaylistCounter playlists={playlistToRender}/>
           <HoursCounter playlists={playlistToRender}/>
+          <Timer />
           <Filter onTextChange={text => {
               this.setState({filterString: text})
             }}/>
