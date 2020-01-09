@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'reset-css/reset.css';
 import './App.css';
 import queryString from 'query-string';
+import moment from 'moment';
 
 let defaultStyle = {
   color: '#fff',
@@ -101,13 +102,11 @@ class Timer extends Component{
   render(){
     let currentDate = new Date();
     let timeToDieInSeconds = (21*60*60+37*60)-(currentDate.getHours()*60*60+currentDate.getMinutes()*60+currentDate.getSeconds());
-    let timetoDieInHours = Math.floor(timeToDieInSeconds / 3600);
-    let totalSecondsLeft = timeToDieInSeconds % 3600;
-    let minutes = Math.floor(totalSecondsLeft /60);
-    let seconds = totalSecondsLeft % 60;
+    let caleTe = moment().startOf('day').seconds(timeToDieInSeconds).format('H:mm:ss');
+    
     return ( <div style={defaultStyle}> 
       <h2>Time : {currentDate.getHours()}:{currentDate.getMinutes()}:{currentDate.getSeconds()}</h2>
-      <h2>Time to 21:37 : {timetoDieInHours}:{minutes}:{seconds}</h2>
+      <h2>Time to 21:37 {caleTe}</h2>
         </div>);
   }
 }
@@ -140,10 +139,10 @@ class App extends Component {
     .then(playlistData => {
       let playlists = playlistData.items
       let trackDataPromises = playlists.map(playlist => {
-        let responsePromise = fetch(playlist.tracks.href, {
+      let responsePromise = fetch(playlist.tracks.href, {
           headers: {'Authorization': 'Bearer ' + accessToken}
         })
-        let trackDataPromise = responsePromise
+      let trackDataPromise = responsePromise
           .then(response => response.json())
         return trackDataPromise
       })
